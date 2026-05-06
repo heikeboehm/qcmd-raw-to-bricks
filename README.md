@@ -127,7 +127,7 @@ To measure actual lag time for your system:
 
 ## Contact
 
-For questions or issues, contact: boehm.heike@gmail.com
+For questions or issues, contact: heike.boehm@mr.mpg.de
 
 ## License
 
