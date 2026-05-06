@@ -23,14 +23,10 @@ Thumbs.db
 .streamlit/
 *.streamlit
 
-# Data and archives
+# Data files (exclude data, keep requirements.txt)
+Data_*.txt
+*_timeline.txt
+*.csv
+*.zip
 archive/
 old/
-*.csv
-*.txt
-*.zip
-*.tar
-
-# Temporary
-.tmp/
-temp/
