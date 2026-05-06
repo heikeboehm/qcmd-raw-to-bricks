@@ -1,0 +1,36 @@
+# Environment
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+*.streamlit
+
+# Data and archives
+archive/
+old/
+*.csv
+*.txt
+*.zip
+*.tar
+
+# Temporary
+.tmp/
+temp/
