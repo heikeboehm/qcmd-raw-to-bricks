@@ -70,6 +70,20 @@ with col_info:
 See QCM-D_Analysis_Documentation.md for details.
         """)
 
+    # Provide timeline template download
+    try:
+        with open("TIMELINE_TEMPLATE_OPTION_B.txt", "r") as f:
+            template_content = f.read()
+        st.download_button(
+            label="📋 Download Timeline Template",
+            data=template_content,
+            file_name="TIMELINE_TEMPLATE_OPTION_B.txt",
+            mime="text/plain",
+            use_container_width=True
+        )
+    except FileNotFoundError:
+        st.info("📋 Template file not found")
+
 # ============================================================================
 # SESSION STATE
 # ============================================================================
@@ -138,10 +152,10 @@ if raw_file and timeline_file:
     if st.button("🚀 Process Phase 1", use_container_width=True):
         with st.spinner("Processing..."):
             try:
-                from phase1_utils import process_phase1
+                from phase1_utils import process_phase1, extract_experiment_id_from_filename
 
-                # Extract persistent ID
-                persistent_id = raw_file.name.replace("Data_", "").replace("_rawdata.txt", "")
+                # Extract experiment ID from raw data filename
+                persistent_id = extract_experiment_id_from_filename(raw_file.name)
 
                 # Run processing
                 result = process_phase1(
@@ -153,16 +167,16 @@ if raw_file and timeline_file:
 
                 st.session_state.adj_data_dict = result["adj_data_dict"]
                 st.session_state.adj_timeline_dict = result["adj_timeline_dict"]
+                st.session_state.persistent_id = persistent_id
                 st.session_state.phase1_complete = True
+                st.session_state.validation_report = result.get("validation_report", {})
 
             except ValueError as e:
-                st.error("❌ File format error: Check that raw data and timeline files are in the correct format")
-                with st.expander("Details"):
-                    st.code(str(e))
+                st.error("❌ Timeline format error")
+                st.code(str(e))
             except Exception as e:
-                st.error(f"❌ Processing error: {str(e)}")
-                with st.expander("Details"):
-                    st.code(str(e))
+                st.error("❌ Processing error")
+                st.code(str(e))
 
 # ============================================================================
 # RESULTS
@@ -188,10 +202,6 @@ if st.session_state.phase1_complete:
             zf.writestr(f"Data_S{int(sensor)}_QCMD_adj_timeline.csv", csv_timeline)
 
     zip_buffer.seek(0)
-
-    # Extract persistent ID from filename
-    if st.session_state.persistent_id is None and raw_file:
-        st.session_state.persistent_id = raw_file.name.replace("Data_", "").replace("_rawdata.txt", "")
 
     zip_filename = f"{st.session_state.persistent_id}_adj_file.zip" if st.session_state.persistent_id else "phase1_data.zip"
 
@@ -225,9 +235,7 @@ if st.session_state.phase1_complete:
                 st.session_state.phase2_complete = True
 
             except Exception as e:
-                st.error(f"❌ Phase 2 processing error: {str(e)}")
-                with st.expander("Details"):
-                    st.code(str(e))
+                st.error(f"❌ Phase 2 processing error:\n\n{str(e)}")
 
     # Phase 2 results
     if st.session_state.phase2_complete:

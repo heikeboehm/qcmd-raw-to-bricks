@@ -1,0 +1,74 @@
+# EXPERIMENT METADATA
+EXPERIMENT ID: Data_260423_6269475_SUV-YFP
+DATE: 2026-04-23
+RESEARCHER: [Your name]
+
+# SENSORS USED
+S1: [surface type] lot [lot#]  |  [prep notes, e.g., new sensor, ozone activated]
+S2: [surface type] lot [lot#]  |  [prep notes]
+S3: [surface type] lot [lot#]  |  [prep notes]
+S4: [surface type] lot [lot#]  |  [prep notes]
+
+# SOLUTION REGISTRY
+# Format: ShortName | Full description (vendor, lot number, concentration, etc.)
+# Each solution must be defined before being used in the timeline
+
+PBS | PBS pH 7.4, isotonic phosphate-buffered saline
+PBS_Mg | PBS with 2mM MgCl2
+PBS_Ni | PBS with 2mM NiCl2
+SUV_batch_6249612 | Small unilamellar vesicles, E. coli lipids, batch 6249612, 100 nm diameter
+PBS_GFP_100uM | PBS with 100 µM GFP
+PBS_GFP_50uM | PBS with 50 µM GFP
+
+# TIMELINE
+# Format: M:SS S{sensor} {speed}_ul-min {solution_name} [optional: (dynamic)]
+#     or: HH:MM:SS S{sensor} {speed}_ul-min {solution_name} [optional: (dynamic)]
+# Notes:
+#   - Times before 1 hour: M:SS or MM:SS format (e.g., 0:00, 9:51, 38:00)
+#   - Times after 1 hour: HH:MM:SS format (e.g., 1:07:33, 1:21:14)
+#   - Sensors: S1, S2, S3, S4
+#   - Speed: flow rate in microliters per minute
+#   - Solution: must match an entry in the SOLUTION REGISTRY above
+#   - Add "(dynamic)" to mark kinetic measurements during active flow
+#   - Remove "(dynamic)" for static/equilibrium measurements
+
+0:00 S1 50_ul-min PBS
+0:00 S2 50_ul-min PBS
+0:00 S3 50_ul-min PBS
+0:00 S4 50_ul-min PBS
+9:51 S1 50_ul-min PBS_Mg
+9:51 S2 50_ul-min PBS_Mg
+9:51 S3 50_ul-min PBS_Mg
+9:51 S4 50_ul-min PBS_Mg
+38:00 S1 30_ul-min SUV_batch_6249612 (dynamic)
+38:00 S2 30_ul-min SUV_batch_6249612 (dynamic)
+38:00 S3 30_ul-min SUV_batch_6249612 (dynamic)
+38:00 S4 30_ul-min SUV_batch_6249612 (dynamic)
+56:55 S1 50_ul-min PBS_Mg
+56:55 S2 50_ul-min PBS_Mg
+56:55 S3 50_ul-min PBS_Mg
+56:55 S4 50_ul-min PBS_Mg
+1:07:33 S1 50_ul-min PBS
+1:07:33 S2 50_ul-min PBS
+1:07:33 S3 50_ul-min PBS
+1:07:33 S4 50_ul-min PBS
+1:21:14 S1 50_ul-min PBS_Ni
+1:21:14 S2 50_ul-min PBS_Ni
+1:21:14 S3 50_ul-min PBS_Ni
+1:21:14 S4 50_ul-min PBS_Ni
+1:43:02 S1 50_ul-min PBS
+1:43:02 S2 50_ul-min PBS
+1:43:02 S3 50_ul-min PBS
+1:43:02 S4 50_ul-min PBS
+2:17:20 S1 30_ul-min PBS_GFP_100uM
+2:17:20 S2 30_ul-min PBS_GFP_100uM
+2:17:20 S3 30_ul-min PBS_GFP_50uM
+2:17:20 S4 30_ul-min PBS_GFP_50uM
+2:43:19 S1 50_ul-min PBS
+2:43:19 S2 50_ul-min PBS
+2:43:19 S3 50_ul-min PBS
+2:43:19 S4 50_ul-min PBS
+3:19:07 S1 50_ul-min PBS (stopped)
+3:19:07 S2 50_ul-min PBS (stopped)
+3:19:07 S3 50_ul-min PBS (stopped)
+3:19:07 S4 50_ul-min PBS (stopped)
